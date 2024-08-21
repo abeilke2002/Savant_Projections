@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import numpy as np
-import plotly.express as px
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import seaborn as sns
