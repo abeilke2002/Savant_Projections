@@ -79,14 +79,14 @@ def plot_grouped_bar(data, selected_player, selected_stat):
     r2 = [x + bar_width for x in r1]
 
     # Create the plot
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(15, 8))
     
     # Plot actual and predicted values
     ax.bar(r1, actual_values, color='blue', width=bar_width, edgecolor='grey', label='Actual')
     ax.bar(r2, predicted_values, color='orange', width=bar_width, edgecolor='grey', label='Predicted')
 
     # Add labels and title
-    ax.set_title("Model Performance Through The Years", fontsize=50, loc='center')
+    ax.set_title("Model Performance Through The Years", fontsize=20, loc='center')
     ax.set_xlabel('Season', fontweight='bold')
     ax.set_ylabel('Value', fontweight='bold')
     ax.set_xticks([r + bar_width / 2 for r in range(len(seasons))])
@@ -310,7 +310,6 @@ st.markdown('---')  # Horizontal rule to separate the sections
 bottom_left_col, bottom_right_col = st.columns([2, 2], gap="large")
 
 with bottom_left_col:
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
     
     if not df_selected_player.empty:
         plot_grouped_bar(data, selected_player, selected_stat)
