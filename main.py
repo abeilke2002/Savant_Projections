@@ -3,30 +3,15 @@ from data_gather import get_batting_stats_with_year, get_launch_angle_swsp, join
 import numpy as np
 
 def main():
-    start_year = 2015
-    end_year = 2023
-    min_abs = 200
+    data = set_df(pd.DataFrame())
+    predictors = ['Age', 'G', 'PA', 'H', '1B', '2B', '3B', 'HR', 'R', 'RBI', 'BB', 'IBB', 'SO', 'HBP', 'SB', 'AVG', 'BB%', 'K%', 'OBP', 'SLG', 'OPS',
+              'ISO', 'BABIP', 'LD%', 'GB%', 'FB%', 'wOBA', 'wRC+', 'WAR', 'O-Swing%', 'Z-Swing%', 'Swing%', 'O-Contact%', 'Zone%', 'SwStr%', 'Pull%',
+              'Cent%', 'Oppo%', 'Soft%', 'Med%', 'Hard%', 'EV', 'LA', 'Barrels', 'maxEV', 'xSLG', 'xwOBA', 'Whiff%', 'Chase%']
 
-    start_date = '2015-01-01'
-    end_date = '2023-09-30'
-    min_bbe = 100
-
-    season_stats = get_batting_stats_with_year(start_year, end_year, min_abs)
-    la_swsp = get_launch_angle_swsp(start_date, end_date, min_bbe)
-
-    data = join_all_df(season_stats, la_swsp)
-    la_swsp.to_csv("la_swsp.csv")
-    data.to_csv("all_players.csv")
+    test = predict_next_season_stats(data, predictors)
+    test = get_percentiles(test)
+    test.to_csv("preds.csv")
 
 
 if __name__ == "__main__":
     main()
-
-
-
-# Save the accumulated predictions to a CSV file after the loop
-test_2023.to_csv("2023_preds.csv", index=False)
-print("2023 predictions saved to preds.csv")
-
-average_diff_df = pd.DataFrame(average_diffs)
-average_diff_df.to_csv("average_diffs.csv", index=False)
