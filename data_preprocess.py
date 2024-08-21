@@ -12,7 +12,6 @@ def set_df(df):
     targets = ['Next_xwOBA', 'Next_xBA', 'Next_EV', 'Next_HardHit%', 'Next_Barrel%', 'Next_Chase%', 'Next_Whiff%',
                'Next_K%', 'Next_BB%','Next_xSLG']
     
-    all = feats + targets
     df = df.dropna(subset=feats)  
 
     return df
