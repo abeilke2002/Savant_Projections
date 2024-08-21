@@ -72,9 +72,11 @@ This project was a lot of fun and allowed me to be able to replicate what potent
 #### Potential Improvements
 
 - A.) More Data
+  
 For a model complex in itself already, the lack of data doesn't do the model any favors. When training for predictions for the 2021 season, the training data shape was only around 1800 rows. This is in addition to getting player seasons with a minimum at bats of 100. There is opportunity for randomness when a set the minimum threshold 100, but a risk I took to be able to get more training data.
 
 - B.) Pitch Level Data
+
 The statistics that were used to predict were strictly full season data. There is chance for luck to overtake a players stats. I've seen other player projection models use each batted ball from a hitter's season to get a deeper understanding of how they are coming to their season statistics. In this model, I took their statistics at surface level with little regard for how they got there.
 
 
