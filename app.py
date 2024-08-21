@@ -66,8 +66,15 @@ with st.sidebar:
     # Main Section
 
 def plot_grouped_bar(data, selected_player, selected_stat):
+    stat_with_prefix = "Next_" + selected_stat
+    
     # Filter the data for the selected player and stat
-    input_df = data[(data['Name'] == selected_player) & (data['Stat'] == selected_stat)]
+    input_df = data[(data['Name'] == selected_player) & (data['Stat'] == stat_with_prefix)]
+    
+    # Check if the filtered data is empty before proceeding
+    if input_df.empty:
+        st.write(f"No data available for {selected_stat} and {selected_player}.")
+        return
     
     # Set up the bar chart data
     seasons = input_df['Season'].values
@@ -80,14 +87,14 @@ def plot_grouped_bar(data, selected_player, selected_stat):
     r2 = [x + bar_width for x in r1]
 
     # Create the plot
-    fig, ax = plt.subplots(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(10, 6))
     
     # Plot actual and predicted values
     ax.bar(r1, actual_values, color='blue', width=bar_width, edgecolor='grey', label='Actual')
     ax.bar(r2, predicted_values, color='orange', width=bar_width, edgecolor='grey', label='Predicted')
 
-    # Add labels and title
-    ax.set_title("Model Performance Through The Years", fontsize=35, loc='center')
+    # Set title, labels, and ticks
+    ax.set_title("Model Performance Through The Years", fontsize=50, loc='center')
     ax.set_xlabel('Season', fontweight='bold')
     ax.set_ylabel('Value', fontweight='bold')
     ax.set_xticks([r + bar_width / 2 for r in range(len(seasons))])
@@ -98,6 +105,7 @@ def plot_grouped_bar(data, selected_player, selected_stat):
 
     # Show the plot using Streamlit
     st.pyplot(fig)
+
 
 def plot_actual_percentiles(data, selected_player, selected_act_year):
     if selected_act_year == 2025:
