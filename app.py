@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import numpy as np
+import plotly.express as px
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import seaborn as sns
@@ -33,7 +34,7 @@ with st.sidebar:
     stat_list = list(data.Stat.unique())[::-1]
     
     # Set default selections
-    default_player = 'Bobby Witt Jr.'
+    default_player = 'Isaac Paredes'
     default_actual_year = 2024
     default_predicted_year = 2025
     
@@ -57,7 +58,7 @@ with st.sidebar:
     selected_stat = st.selectbox('Select a Stat', stat_list)
     
     # Filter the data based on selected player and year
-    df_selected_player = data[(data['Name'] == selected_player) & (data['Season'] == selected_act_year)]
+    df_selected_player = data[(data['Name'] == selected_player)]
 
     # Main Section
 
@@ -188,7 +189,7 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
         st.pyplot(fig)
 
 def plot_predicted_percentiles(data, selected_player, selected_act_year):
-    if selected_act_year == 2026:
+    if selected_pred_year == 2026:
         st.write("This season has not happened yet.")
     else:
         fig, ax = plt.subplots(figsize=(10, 15))
@@ -292,7 +293,7 @@ with top_left_col:
 
 with top_right_col:
     if not df_selected_player.empty:
-        plot_predicted_percentiles(df_selected_player, selected_player, selected_act_year)
+        plot_predicted_percentiles(df_selected_player, selected_player, selected_pred_year)
     else:
         st.write("No data available for selected player and year.")
 
@@ -323,8 +324,3 @@ with bottom_right_col:
             This application is in V1 of development. Feel free to contact me on Twitter/X (BeilkeAidan3) with any issues!
             Thank you for viewing!
         """)
-
-
-
-
-
