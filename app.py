@@ -144,7 +144,7 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
                 actual_value = round(actual_value * 100, 1)
             elif stat in round_to_3_decimal_stats:
                 actual_value = round(actual_value, 3)
-            else:
+            elif stat == 'EV':  # Do not multiply EV by 100
                 actual_value = round(actual_value, 1)
             
             # Get the color for the percentile based on the colormap
