@@ -67,6 +67,8 @@ with st.sidebar:
 def plot_grouped_bar(data, selected_player, selected_stat):
     # Filter the data for the selected player and stat
     input_df = data[(data['Name'] == selected_player) & (data['Stat'] == selected_stat)]
+
+    plt.title("Model Performance Through The Years", fontsize=50, loc='center')
     
     # Set up the bar chart data
     seasons = input_df['Season'].values
@@ -309,8 +311,6 @@ st.markdown('---')  # Horizontal rule to separate the sections
 bottom_left_col, bottom_right_col = st.columns([2, 2], gap="large")
 
 with bottom_left_col:
-    st.markdown('### Model Performance Bar Chart')
-
     # Check if the player data is available and plot the grouped bar chart
     if not df_selected_player.empty:
         plot_grouped_bar(data, selected_player, selected_stat)
