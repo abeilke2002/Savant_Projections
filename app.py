@@ -311,7 +311,8 @@ st.markdown('---')  # Horizontal rule to separate the sections
 bottom_left_col, bottom_right_col = st.columns([2, 2], gap="large")
 
 with bottom_left_col:
-    # Check if the player data is available and plot the grouped bar chart
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    
     if not df_selected_player.empty:
         plot_grouped_bar(data, selected_player, selected_stat)
     else:
