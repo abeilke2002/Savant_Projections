@@ -112,8 +112,9 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
         # Define the custom order of stats
         stat_order = ['xwOBA', 'xBA', 'xSLG', 'EV', 'Barrel%', 'HardHit%', 'Chase%', 'Whiff%', 'K%', 'BB%']
 
-        # List of stats that need to be rounded to 1 decimal place and multiplied by 100
-        round_to_1_decimal_stats = ['BB%', 'K%', 'HardHit%', 'Barrel%', 'Chase%', 'Whiff%']
+        # Lists for different rounding logic
+        round_to_1_decimal_stats = ['BB%', 'K%', 'HardHit%', 'Barrel%', 'Chase%', 'Whiff%', 'EV']
+        round_to_3_decimal_stats = ['xwOBA', 'xBA', 'xSLG']
 
         plt.title("Actual Results Plot", fontsize=50, loc='center')
 
@@ -138,9 +139,11 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
             if pd.isna(percentile):
                 continue  # Skip this iteration if the percentile is NaN
 
-            # Round the actual value to 1 decimal place and multiply by 100 if it's in the specific list
+            # Apply different rounding logic
             if stat in round_to_1_decimal_stats:
                 actual_value = round(actual_value * 100, 1)
+            elif stat in round_to_3_decimal_stats:
+                actual_value = round(actual_value, 3)
             else:
                 actual_value = round(actual_value, 1)
             
@@ -163,7 +166,7 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
             ax.text(-5, y_coord, stat, ha='right', va='center', fontsize=15, color='black', fontweight='bold')
             
             # Add the actual value to the right of the line
-            ax.text(105, y_coord, f'{actual_value:.1f}', ha='left', va='center', fontsize=15, color='black', fontweight='bold')
+            ax.text(105, y_coord, f'{actual_value}', ha='left', va='center', fontsize=15, color='black', fontweight='bold')
 
         # Adjust y-axis limits to fit the variables properly
         ymin_value = 0.5 - (len(stat_order) - 1) * 0.3 - 0.15
