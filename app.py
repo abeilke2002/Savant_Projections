@@ -95,13 +95,13 @@ def plot_grouped_bar(data, selected_player, selected_stat):
 
     # Set title, labels, and ticks
     ax.set_title("Model Performance Through The Years", fontsize=50, loc='center')
-    ax.set_xlabel('Season', fontweight='bold', fontsize = 20)
-    ax.set_ylabel('Value', fontweight='bold', fontsize = 20)
+    ax.set_xlabel('Season', fontweight='bold', fontsize = 27)
+    ax.set_ylabel('Value', fontweight='bold', fontsize = 27)
     ax.set_xticks([r + bar_width / 2 for r in range(len(seasons))])
-    ax.set_xticklabels(seasons, fontsize = 20)
+    ax.set_xticklabels(seasons, fontsize = 27)
 
     # Add legend
-    ax.legend()
+    ax.legend(fontsize = 20)
 
     # Show the plot using Streamlit
     st.pyplot(fig)
