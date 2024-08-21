@@ -57,6 +57,7 @@ with st.sidebar:
     selected_stat = st.selectbox('Select a Stat', stat_list)
     
     # Filter the data based on selected player and year
+    df_selected_player = data[(data['Name'] == selected_player)]
     df_selected_player_act = data[(data['Name'] == selected_player) & (data['Season'] == selected_act_year)]
     df_selected_player_pred = data[(data['Name'] == selected_player) & (data['Season'] == selected_pred_year)]
 
