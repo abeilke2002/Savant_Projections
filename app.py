@@ -87,7 +87,7 @@ def plot_grouped_bar(data, selected_player, selected_stat):
     r2 = [x + bar_width for x in r1]
 
     # Create the plot
-    fig, ax = plt.subplots(figsize=(15, 10))
+    fig, ax = plt.subplots(figsize=(20, 15))
     
     # Plot actual and predicted values
     ax.bar(r1, actual_values, color='blue', width=bar_width, edgecolor='grey', label='Actual')
