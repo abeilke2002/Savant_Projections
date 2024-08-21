@@ -100,6 +100,7 @@ def plot_grouped_bar(data, selected_player, selected_stat):
     ax.set_xticks([r + bar_width / 2 for r in range(len(seasons))])
     ax.set_xticklabels(seasons, fontsize = 27)
 
+    ax.tick_params(axis='y', labelsize=27)
     # Add legend
     ax.legend(fontsize = 20)
 
