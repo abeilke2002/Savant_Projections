@@ -35,7 +35,7 @@ with st.sidebar:
     stat_list = [stat.replace("Next_", "") for stat in list(data.Stat.unique())[::-1]]
     
     # Set default selections
-    default_player = 'Isaac Paredes'
+    default_player = 'Bobby Witt Jr.'
     default_actual_year = 2024
     default_predicted_year = 2025
     
