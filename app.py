@@ -57,7 +57,9 @@ with st.sidebar:
     selected_stat = st.selectbox('Select a Stat', stat_list)
     
     # Filter the data based on selected player and year
-    df_selected_player = data[(data['Name'] == selected_player)]
+    df_selected_player_act = data[(data['Name'] == selected_player) & (data['Season'] == selected_act_year)]
+    df_selected_player_pred = data[(data['Name'] == selected_player) & (data['Season'] == selected_pred_year)]
+
 
     # Main Section
 
@@ -284,15 +286,15 @@ def plot_predicted_percentiles(data, selected_player, selected_act_year):
 top_left_col, top_right_col = st.columns([1, 1], gap='large')
 
 with top_left_col:
-    if not df_selected_player.empty:
-        plot_actual_percentiles(df_selected_player, selected_player, selected_act_year)
+    if not df_selected_player_act.empty:
+        plot_actual_percentiles(df_selected_player_act, selected_player, selected_act_year)
     else:
         st.write("No data available for selected player and year.")
 
-
+# Right column for predicted year data
 with top_right_col:
-    if not df_selected_player.empty:
-        plot_predicted_percentiles(df_selected_player, selected_player, selected_pred_year)
+    if not df_selected_player_pred.empty:
+        plot_predicted_percentiles(df_selected_player_pred, selected_player, selected_pred_year)
     else:
         st.write("No data available for selected player and year.")
 
