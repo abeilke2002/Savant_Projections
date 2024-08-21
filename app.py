@@ -30,7 +30,8 @@ with st.sidebar:
     # Reverse the player and year lists for display
     player_list = list(data.Name.unique())[::-1]
     year_list = list(data.Season.unique())[::-1]
-    stat_list = list(data.Stat.unique())[::-1]
+
+    stat_list = [stat.replace("Next_", "") for stat in list(data.Stat.unique())[::-1]]
     
     # Set default selections
     default_player = 'Isaac Paredes'
