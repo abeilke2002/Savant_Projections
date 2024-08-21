@@ -27,46 +27,57 @@ My responses were choosen soley because I wanted to replicate what [Baseball Sav
 
 ### Features
 
-The take model followed a nearly identical process as the swing model, but with a few important changes to note. First, we of course were looking only at pitches not swung at. Secondly, we used a different model that required a lot less features. We used an XGBoost model that had an RMSE of 0.070. An RMSE much better than our swing model likely because the results for a take are less variable than a result for a swing. Here are the variables, ranked by significance:
+The length of features spanned to be over 200 unique different variables of statistics that you could have for a player over the course of a season. Some examples of these statistics ran from 1B's, 2B's, 3B's, HR's, all the way to O-Swing% and Z-Swing%. In another effort to reduce overfitting, I created a function to select the top 20 features for each individual statistic. Because 20 features times 10 response variables would be a lot of writing, here were the 20 most important features for 2023 xSLG:
 
-- Attack Zone
-- Balls in the count
-- Strikes in the count
-- Vertical Location of Pitch
-- Horizontal Location of Pitch
-
+- Soft%
+- Hard%
+- Previous xSLG
+- WAR
+- xwOBA
+- Barrels
+- IBB
+- Oppo%
+- Swing%
+- Z-Swing%
+- O-Swing%
+- OBP
+- Med%
+- Pull%
+- EV
+- Chase%
+- LD%
+- 3B
+- SwStr%
+- HR
 
 ## Results
 
-After training the model on 2023 data, I decided to use these two separate models and test on the 2024 season so far. After finding the leaders in both the swing decision and take decisions, I would then find the average of the two and create a wholistic statistic that could find overall who makes the most impactful decisions.
+The metric I decided to go with was Mean Absolute Error. Essentially what MAE is is the absolute difference actual and predicted. Here is a list of the MAE for each of the response variables built in the model:
 
-
-### Take Leaders
-Here are the batters with the best take decisions:
-
-- Kyle tucker
-- Brandon Nimmo
-- Lamonte Wade
-- Bryce Harper
-
-What separates these guys is that they are not swinging at pitches generally that are predicted to have a negative run expectancy. Simply put, they are not chasing pitches that are hard to do damage against.
-
-### Swing Leaders
-Here are the batters with the best swing decisions:
-
-- Brandon Marsh
-- Brenton Doyle
-- Steven Kwan
-- Gleyber Torres
-
-Similiar to the take leaders, what these batters excel at is swinging at pitches that have a positive run expectancy predicted value. Something of note for this leaderboard is the lineup around them. If a player has a superstar lineup around them filled with all stars, and this player in question is not an all star, they are likely to see more pitches to hit, forcing them to swing more. Same could be said for a leadoff batter as well.
+- Next_BB%         0.017909
+- Next_Barrel%     0.075940
+- Next_Chase%      0.030418
+- Next_EV          1.516423
+- Next_HardHit%    0.204434
+- Next_K%          0.059124
+- Next_Whiff%      0.030549
+- Next_xBA         0.021822
+- Next_xSLG        0.162571
+- Next_xwOBA       0.051578
 
 ## Conclusions
 
-Baseball is a challenging game, and therein lies the importance of process metrics. Having a robust process can reassure players or front offices that a small sample of a player's struggles is just that—a small sample—and not necessarily indicative of future performance. Instead, a sound process might suggest that a breakout could be imminent.
+This project was a lot of fun and allowed me to be able to replicate what potentially MLB front office's do every offseason. Although I used a deep learning neural network, there are certainly areas to improve this model process.
 
-The dilemma with these process-oriented models is determining where to draw the line. Ultimately, baseball is a results-oriented game for many. Each team has a different tolerance for how long they can wait for a player to start showing positive results. No baseball statistic is perfect, and other factors likely contribute to a player's struggles as well.
+#### Potential Improvements
 
-In our model, we only looked at pitch characteristics and count to determine the run expectancy of a pitch, intentionally omitting the outcome of the pitch. This could be a shortcoming of the model and may lead to some inaccuracies. There is also potential bias in the swing model. Batters who tend to get more pitches to hit, swing more, or are the weak points in their lineup will have more opportunities to swing. While this model is not perfect, it could help identify potential areas of strength or weakness in a batter."
+- A.) More Data
+For a model complex in itself already, the lack of data doesn't do the model any favors. When training for predictions for the 2021 season, the training data shape was only around 1800 rows. This is in addition to getting player seasons with a minimum at bats of 100. There is opportunity for randomness when a set the minimum threshold 100, but a risk I took to be able to get more training data.
 
-This version refines some phrases and maintains the critical perspective on the limitations of process metrics while acknowledging their potential benefits.
+- B.) Pitch Level Data
+The statistics that were used to predict were strictly full season data. There is chance for luck to overtake a players stats. I've seen other player projection models use each batted ball from a hitter's season to get a deeper understanding of how they are coming to their season statistics. In this model, I took their statistics at surface level with little regard for how they got there.
+
+
+
+
+
