@@ -12,16 +12,16 @@ As mentioned previously I constructed a deep neural network utilizing the Kera's
 
 My responses were choosen soley because I wanted to replicate what [Baseball Savant](https://baseballsavant.mlb.com/) does with their bubbles and percentiles. Not everybody may understand how good a .380 xwOBA is, but what is important is the colors and numbers. This was a really creative idea on behalf of the developers of Baseball Savant as it is more user friendly for people who perhaps don't have a firm grasp on sabermetrics. Here is a list of all of the variables I predicted:
 
--xwOBA
--xBA
--xSLG
--EV
--Barrel%
--Hard Hit%
--Chase%
--Whiff%
--K%
--BB%
+- xwOBA
+- xBA
+- xSLG
+- EV
+- Barrel%
+- Hard Hit%
+- Chase%
+- Whiff%
+- K%
+- BB%
 
 
 
