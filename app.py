@@ -4,6 +4,7 @@ import altair as alt
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+import matplotlib.ticker as ticker
 import seaborn as sns
 
 #######################
