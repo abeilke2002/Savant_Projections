@@ -37,7 +37,7 @@ with st.sidebar:
     # Set default selections
     default_player = 'Bobby Witt Jr.'
     default_actual_year = 2024
-    default_predicted_year = 2025
+    default_predicted_year = 2024
     
     # Ensure the default player and years are in the lists, if not fallback to the first item
     selected_player = st.selectbox('Select a Player', player_list, index=player_list.index(default_player) if default_player in player_list else 0)
