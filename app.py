@@ -52,7 +52,7 @@ with st.sidebar:
         selected_pred_year = st.selectbox('Select Predicted Year', year_list, index=year_list.index(default_predicted_year) if default_predicted_year in year_list else 0, key='predicted_year')
 
     # Spacer
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    st.markdown("<br><br><br><br><br><br>", unsafe_allow_html=True)
     
     # Stat selection
     st.subheader('Model Performance Stat')
