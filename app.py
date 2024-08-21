@@ -110,7 +110,7 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
         stat_order = ['xwOBA', 'xBA', 'xSLG', 'EV', 'Barrel%', 'HardHit%', 'Chase%', 'Whiff%', 'K%', 'BB%']
 
         # List of stats that need to be rounded to 2 decimal places and multiplied by 100
-        round_to_1_decimal_stats = ['BB%', 'K%', 'HardHit%', 'Barrel%', 'Chase%', 'Whiff%', 'EV']
+        round_to_1_decimal_stats = ['BB%', 'K%', 'HardHit%', 'Barrel%', 'Chase%', 'Whiff%']
 
         plt.title("Actual Results Plot", fontsize=50, loc='center')
 
