@@ -112,7 +112,7 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
         # Define the custom order of stats
         stat_order = ['xwOBA', 'xBA', 'xSLG', 'EV', 'Barrel%', 'HardHit%', 'Chase%', 'Whiff%', 'K%', 'BB%']
 
-        # List of stats that need to be rounded to 2 decimal places and multiplied by 100
+        # List of stats that need to be rounded to 1 decimal place and multiplied by 100
         round_to_1_decimal_stats = ['BB%', 'K%', 'HardHit%', 'Barrel%', 'Chase%', 'Whiff%']
 
         plt.title("Actual Results Plot", fontsize=50, loc='center')
@@ -138,9 +138,11 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
             if pd.isna(percentile):
                 continue  # Skip this iteration if the percentile is NaN
 
-            # Round the actual value to 2 decimal places and multiply by 100 if it's in the specific list
+            # Round the actual value to 1 decimal place and multiply by 100 if it's in the specific list
             if stat in round_to_1_decimal_stats:
                 actual_value = round(actual_value * 100, 1)
+            else:
+                actual_value = round(actual_value, 1)
             
             # Get the color for the percentile based on the colormap
             color = cmap(norm(percentile))
@@ -160,10 +162,8 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
             # Add the stat name to the left of the line with a larger font size
             ax.text(-5, y_coord, stat, ha='right', va='center', fontsize=15, color='black', fontweight='bold')
             
-            # Add the actual value to the right of the line, multiplying by 100 if in the specific list
-            ax.text(105, y_coord, 
-                    f'{actual_value:.3f}' if stat not in round_to_1_decimal_stats else f'{actual_value:.1f}1', 
-                    ha='left', va='center', fontsize=15, color='black', fontweight='bold')
+            # Add the actual value to the right of the line
+            ax.text(105, y_coord, f'{actual_value:.1f}', ha='left', va='center', fontsize=15, color='black', fontweight='bold')
 
         # Adjust y-axis limits to fit the variables properly
         ymin_value = 0.5 - (len(stat_order) - 1) * 0.3 - 0.15
