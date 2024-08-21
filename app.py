@@ -101,6 +101,7 @@ def plot_grouped_bar(data, selected_player, selected_stat):
     ax.set_xticklabels(seasons, fontsize = 27)
 
     ax.tick_params(axis='y', labelsize=27)
+    ax.yaxis.set_major_locator(ticker.MaxNLocator(nbins=6))
     # Add legend
     ax.legend(fontsize = 20)
 
