@@ -86,7 +86,7 @@ def plot_grouped_bar(data, selected_player, selected_stat):
     ax.bar(r2, predicted_values, color='orange', width=bar_width, edgecolor='grey', label='Predicted')
 
     # Add labels and title
-    ax.set_title("Model Performance Through The Years", fontsize=20, loc='center')
+    ax.set_title("Model Performance Through The Years", fontsize=35, loc='center')
     ax.set_xlabel('Season', fontweight='bold')
     ax.set_ylabel('Value', fontweight='bold')
     ax.set_xticks([r + bar_width / 2 for r in range(len(seasons))])
