@@ -2,15 +2,15 @@
 
 ## Process
 
-Some of the most important MLB front office decisions are made during the offseason when executives need to decide whether or not to sign or trade for a player. Future projections of said player could help add context to this decision making. These projections can be some of the most dense and hardest modeling practices because you are attempting to predict human performance across a full season. There are so many bumps in the road over the course of a season that a player has to deal with that makes it hard to understand how they are going to perform. Although the task isn't easy, I decided to attempt to project player performance using a deep neural network.
+Some of the most important decisions made by MLB front offices occur during the offseason when executives must decide whether to sign or trade for players. Future projections of a player's performance can help add context to these decisions. However, these projections are some of the densest and most challenging modeling practices because predicting human performance over a full season is difficult. Players face numerous challenges throughout a season, making it hard to forecast how they will perform. Despite the difficulty, I decided to attempt to project player performance using a deep neural network.
 
 ## Modeling
 
-As mentioned previously I constructed a deep neural network utilizing the Kera's packages in Python. From Keras I imported Sequential because the data was from 2015-2024 and it was important to note that this is time series data and seasons from 2023 shouldn't be used to predict 2021 data. The network is compiled of 6 hidden layers to give the model an opportunity to understand the non-linear relationships that come with predicting future player performance. In the end I also added some batch normalization and a dropout as well. In previous iterations I added more layers and more normalizations and dropouts, but found that the model was learning the training data too specifically, so I opted to keep the model more simplistic.
+I constructed a deep neural network utilizing Keras in Python. I imported the Sequential model from Keras because the data spanned from 2015-2024, and it was essential to recognize that this is time-series data. Seasons from 2023 should not be used to predict 2021 data. The network is composed of six hidden layers to allow the model to learn the non-linear relationships involved in predicting future player performance. I also included batch normalization and dropout layers to improve generalization. In earlier iterations, I added more layers and regularization techniques, but I found that the model began overfitting the training data, so I opted for a simpler design.
 
 ### Response Variables
 
-My responses were choosen soley because I wanted to replicate what [Baseball Savant](https://baseballsavant.mlb.com/) does with their bubbles and percentiles. Not everybody may understand how good a .380 xwOBA is, but what is important is the colors and numbers. This was a really creative idea on behalf of the developers of Baseball Savant as it is more user friendly for people who perhaps don't have a firm grasp on sabermetrics. Here is a list of all of the variables I predicted:
+I chose my response variables to replicate what [Baseball Savant](https://baseballsavant.mlb.com/) does with their bubbles and percentiles. Not everyone may understand how good a .380 xwOBA is, but the colors and numbers in their visualizations make it more user-friendly, especially for people who may not have a strong grasp on sabermetrics. Here is a list of the variables I predicted:
 
 - xwOBA
 - xBA
@@ -27,7 +27,7 @@ My responses were choosen soley because I wanted to replicate what [Baseball Sav
 
 ### Features
 
-The length of features spanned to be over 200 unique different variables of statistics that you could have for a player over the course of a season. Some examples of these statistics ran from 1B's, 2B's, 3B's, HR's, all the way to O-Swing% and Z-Swing%. In another effort to reduce overfitting, I created a function to select the top 20 features for each individual statistic. Because 20 features times 10 response variables would be a lot of writing, here were the 20 most important features for 2023 xSLG:
+The feature set consisted of over 200 unique statistics that can be collected for a player over the course of a season. These features ranged from basic counting stats like singles, doubles, and home runs to advanced metrics like O-Swing% and Z-Swing%. To reduce overfitting, I created a function that selected the top 20 features for each individual statistic. Since it would be lengthy to list all 20 features for each of the 10 response variables, here are the 20 most important features for predicting xSLG in 2023:
 
 - Soft%
 - Hard%
@@ -52,7 +52,7 @@ The length of features spanned to be over 200 unique different variables of stat
 
 ## Results
 
-The metric I decided to go with was Mean Absolute Error. Essentially what MAE is is the absolute difference actual and predicted. Here is a list of the MAE for each of the response variables built in the model:
+I used Mean Absolute Error (MAE) as the evaluation metric. MAE represents the average absolute difference between the actual and predicted values. Below is the MAE for each of the response variables:
 
 - Next_BB%         0.017909
 - Next_Barrel%     0.075940
@@ -67,19 +67,18 @@ The metric I decided to go with was Mean Absolute Error. Essentially what MAE is
 
 ## Conclusions
 
-This project was a lot of fun and allowed me to be able to replicate what potentially MLB front office's do every offseason. Although I used a deep learning neural network, there are certainly areas to improve this model process.
+This project was a lot of fun and allowed me to replicate what MLB front offices might do every offseason. Although I used a deep learning neural network, there are certainly areas where this process could be improved.
 
 #### Potential Improvements
 
 - A.) More Data
   
-For a model complex in itself already, the lack of data doesn't do the model any favors. When training for predictions for the 2021 season, the training data shape was only around 1800 rows. This is in addition to getting player seasons with a minimum at bats of 100. There is opportunity for randomness when a set the minimum threshold 100, but a risk I took to be able to get more training data.
+For an already complex model, the lack of data doesn't help. When training for the 2021 season, the dataset had only about 1,800 rows, despite limiting the player seasons to those with a minimum of 100 at-bats. While setting a minimum threshold of 100 at-bats helped gather more training data, it introduced a risk of randomness.
 
 - B.) Pitch Level Data
 
-The statistics that were used to predict were strictly full season data. There is chance for luck to overtake a players stats. I've seen other player projection models use each batted ball from a hitter's season to get a deeper understanding of how they are coming to their season statistics. In this model, I took their statistics at surface level with little regard for how they got there.
+The statistics used in this model were full-season aggregates. This approach may allow for luck or randomness to influence a player's season statistics. Other projection models use pitch-level data to get a deeper understanding of how players accumulate their season totals. In contrast, this model took surface-level statistics with little regard for how they were achieved.
 
+- C.) Simple Deep Learning Model
 
-
-
-
+Another limitation might be the simplicity of the model. While I included a few hidden layers with batch normalization and dropout, there is room for more complexity. Other baseball projection models utilize convolutional neural networks (CNNs) with convolutional layers, max-pooling layers, and dense layers to capture the complex, non-linear relationships present in year-to-year player performance.
