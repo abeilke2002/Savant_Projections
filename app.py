@@ -25,7 +25,7 @@ data = data.drop(columns=['Unnamed: 0'], errors='ignore')
 #######################
 # Sidebar
 with st.sidebar:
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
     st.title('Hitter Savant')
     
     # Reverse the player and year lists for display
