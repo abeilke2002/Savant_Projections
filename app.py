@@ -42,7 +42,6 @@ with st.sidebar:
     # Ensure the default player and years are in the lists, if not fallback to the first item
     selected_player = st.selectbox('Select a Player', player_list, index=player_list.index(default_player) if default_player in player_list else 0)
     
-    # Create two columns in the sidebar for actual year and predicted year
     col1, col2 = st.columns(2)
 
     with col1:
@@ -54,7 +53,6 @@ with st.sidebar:
     # Spacer
     st.markdown("<br><br><br><br><br><br>", unsafe_allow_html=True)
     
-    # Stat selection
     st.subheader('Model Performance Stat')
     selected_stat = st.selectbox('Select a Stat', stat_list)
     
@@ -72,7 +70,6 @@ def plot_grouped_bar(data, selected_player, selected_stat):
     # Filter the data for the selected player and stat
     input_df = data[(data['Name'] == selected_player) & (data['Stat'] == stat_with_prefix)]
     
-    # Check if the filtered data is empty before proceeding
     if input_df.empty:
         st.write(f"No data available for {selected_stat} and {selected_player}.")
         return
@@ -94,7 +91,6 @@ def plot_grouped_bar(data, selected_player, selected_stat):
     ax.bar(r1, actual_values, color='blue', width=bar_width, edgecolor='grey', label='Actual')
     ax.bar(r2, predicted_values, color='orange', width=bar_width, edgecolor='grey', label='Predicted')
 
-    # Set title, labels, and ticks
     ax.set_title("Model Performance Through The Years", fontsize=50, loc='center')
     ax.set_xlabel('Season', fontweight='bold', fontsize = 27)
     ax.set_ylabel(selected_stat, fontweight='bold', fontsize = 27)
@@ -116,10 +112,7 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
     else:
         fig, ax = plt.subplots(figsize=(10, 15))
 
-        # Create a colormap that goes from blue to grey to red
         cmap = mcolors.LinearSegmentedColormap.from_list('blue_grey_red', ['blue', 'grey', 'red'])
-
-        # Normalize the color range from 0 to 100
         norm = mcolors.Normalize(vmin=0, vmax=100)
 
         # Define the custom order of stats
@@ -148,7 +141,6 @@ def plot_actual_percentiles(data, selected_player, selected_act_year):
             percentile = stat_data['Actual_Percentile'].mean()
             actual_value = stat_data['Actual'].mean()
 
-            # Check if percentile is NaN before plotting
             if pd.isna(percentile):
                 continue  # Skip this iteration if the percentile is NaN
 
@@ -212,16 +204,12 @@ def plot_predicted_percentiles(data, selected_player, selected_act_year):
     else:
         fig, ax = plt.subplots(figsize=(10, 15))
 
-        # Create a colormap that goes from blue to grey to red
         cmap = mcolors.LinearSegmentedColormap.from_list('blue_grey_red', ['blue', 'grey', 'red'])
 
-        # Normalize the color range from 0 to 100
         norm = mcolors.Normalize(vmin=0, vmax=100)
-
-        # Define the custom order of stats
+        
         stat_order = ['xwOBA', 'xBA', 'xSLG', 'EV', 'Barrel%', 'HardHit%', 'Chase%', 'Whiff%', 'K%', 'BB%']
 
-        # List of stats that need to be rounded to 2 decimal places and multiplied by 100
         round_to_1_decimal_stats = ['BB%', 'K%', 'HardHit%', 'Barrel%', 'Chase%', 'Whiff%']
 
         plt.title("Prediction Results Plot", fontsize=50, loc='center')
@@ -230,7 +218,7 @@ def plot_predicted_percentiles(data, selected_player, selected_act_year):
 
         # Loop through each stat in the custom order and plot its percentile and actual value
         for i, stat in enumerate(stat_order):
-            # Check if the stat exists in the DataFrame
+
             if not data['Stat'].str.contains(stat, case=False).any():
                 continue  # Skip if the stat is not found in the DataFrame
 
@@ -239,19 +227,15 @@ def plot_predicted_percentiles(data, selected_player, selected_act_year):
             # Filter data for the current stat
             stat_data = data[data['Stat'].str.contains(stat, case=False)]
             
-            # Take the mean percentile and actual for this stat
             percentile = stat_data['Predicted_Percentile'].mean()
             predicted_value = stat_data['Predicted'].mean()
 
-            # Check if percentile is NaN before plotting
             if pd.isna(percentile):
                 continue  # Skip this iteration if the percentile is NaN
 
-            # Round the actual value to 2 decimal places and multiply by 100 if it's in the specific list
             if stat in round_to_1_decimal_stats:
                 predicted_value = round(predicted_value * 100, 1)
             
-            # Get the color for the percentile based on the colormap
             color = cmap(norm(percentile))
             
             # Plot a thicker horizontal line from 0 to 100
