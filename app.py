@@ -316,15 +316,7 @@ with bottom_right_col:
     with st.expander("About", expanded = True):
         st.write("""
             Data was pulled from FanGraphs from 2015-2024. (8/20/24)
-            Predictions were made from all seasons before predicted season.
-
-            For example:
-
-            Train data: 2015-2021
-            Test data: 2022
-            ...
-            Train data; 2015-2022
-            Test data: 2023
+            Predictions were made from all seasons prior to predicted season.
             
             The minimum amount of at bats to qualify in a season for the models was 100.     
 
