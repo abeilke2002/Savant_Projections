@@ -1,5 +1,5 @@
 # Player Projections
-Streamlit link: https://savantprojections-kvnkwab8nu4zhq5pqjz94z.streamlit.app/
+Streamlit link: https://aidanbeilke-savant-predictions.streamlit.app/
 
 ## Process
 
