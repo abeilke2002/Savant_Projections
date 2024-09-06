@@ -235,9 +235,6 @@ def plot_predicted_percentiles(data, selected_player, selected_act_year):
 
             if stat in round_to_1_decimal_stats:
                 predicted_value = round(predicted_value * 100, 1)
-
-            elif stat == 'EV':  # Do not multiply EV by 100
-                predicted_value = round(predicted_value, 1)
             
             color = cmap(norm(percentile))
             
