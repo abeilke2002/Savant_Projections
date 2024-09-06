@@ -316,9 +316,10 @@ with bottom_right_col:
     with st.expander("About", expanded = True):
         st.write("""
             Data was pulled from FanGraphs from 2015-2024. (8/20/24)
-            Predictions were made from all seasons prior to predicted season.
-            
-            The minimum amount of at bats to qualify in a season for the models was 100.     
+            Predictions were made from all seasons before predicted season.
+            The minimum amount of at bats to qualify in a season for the models was 100.
+
+            A player must play in *2* separate seasons in order for them to be choosable on this site.     
 
             Make sure to select Predicted Year 2025 to see the predicted bubbles for next season!
 
