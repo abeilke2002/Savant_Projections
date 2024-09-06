@@ -210,7 +210,7 @@ def plot_predicted_percentiles(data, selected_player, selected_act_year):
         
         stat_order = ['xwOBA', 'xBA', 'xSLG', 'EV', 'Barrel%', 'HardHit%', 'Chase%', 'Whiff%', 'K%', 'BB%']
 
-        round_to_1_decimal_stats = ['BB%', 'K%', 'HardHit%', 'Barrel%', 'Chase%', 'Whiff%']
+        round_to_1_decimal_stats = ['BB%', 'K%', 'HardHit%', 'Barrel%', 'Chase%', 'Whiff%', 'EV']
 
         plt.title("Prediction Results Plot", fontsize=50, loc='center')
 
