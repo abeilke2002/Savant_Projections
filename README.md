@@ -1,4 +1,4 @@
-# Player Projections
+# Deep Learning MLB Player Projections
 Streamlit link: https://aidanbeilke-savant-predictions.streamlit.app/
 
 ## Process
